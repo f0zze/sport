@@ -1,18 +1,13 @@
-const koa = require('koa');
-const koaLogger = require('koa-logger');
-const app = koa();
+'use strict';
+const Koa = require('koa');
+const app = new Koa();
 
 const port = process.env.PORT || 5000;
 
-app.use(function *(next) {
-    console.log('this will be first');
-    yield next;
-    console.log('and this last');
-});
-app.use(koaLogger());
-app.use(function *() {
-    this.body = 'Hello Koa!';
-});
+app.use(async (ctx) => {
+    ctx.body = 'Hello Koa 2.0 and node 7v!';
+    }
+);
 
 app.listen(port);
-console.log('listening on port '+port);
+console.log('listening on port ' + port);
